@@ -6,6 +6,8 @@ class Note {
     
     createElement(title){
       let newNote = document.createElement('div');
+      newNote.settAttribute("class", "card");
+      newNote.innerHTML = ttile;
       
       // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
       
@@ -15,6 +17,7 @@ class Note {
     add(){
       // HINT🤩
       // this function should append the note to the screen somehow
+      document.querySelector(".notes").appendChild(this.element);
     }
     
     saveToStorage(){
@@ -63,3 +66,6 @@ class Note {
   }
   
   let app = new App();
+
+  let note1 = new Note("Finish Lab 3!");
+  note1.add();

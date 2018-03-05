@@ -1,16 +1,17 @@
 class Note {
     constructor(title) {
       this.title = title;
-      // HINT🤩 this.element = this.createElement(title);
+      // HINT🤩
+       this.element = this.createElement(title);
     }
     
     createElement(title){
       let newNote = document.createElement('div');
-      newNote.settAttribute("class", "card");
-      newNote.innerHTML = ttile;
+      newNote.setAttribute("class", "card");
+      newNote.innerHTML = title;
       
       // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
-      
+      console.log('new  note: ' +  newNote);
       return newNote;
     }
     
@@ -57,6 +58,7 @@ class Note {
       // note.add();
       // note.saveToStorage();
       // this.reset();
+
     }
     
     reset(){
@@ -68,4 +70,5 @@ class Note {
   let app = new App();
 
   let note1 = new Note("Finish Lab 3!");
+  console.log(note1);
   note1.add();

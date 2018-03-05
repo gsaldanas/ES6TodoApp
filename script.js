@@ -8,10 +8,22 @@ class Note {
     createElement(title){
       let newNote = document.createElement('div');
       newNote.setAttribute("class", "card");
-      newNote.innerHTML = title;
+    
+
+      let p = document.createElement('p');
+      p.innerHTML= title;
+      newNote.appendChild(p);
+      
+      let a = document.createElement('a');
+
+      a.setAttribute("class" , "card-remove");
+      a.setAttribute("href", "#");
+      a.innerHTML = "Remove";
+      newNote.appendChild(a);
       
       // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
-      console.log('new  note: ' +  newNote);
+   
+      console.log();
       return newNote;
     }
     

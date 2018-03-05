@@ -59,6 +59,14 @@ class Note {
       // this.btnAdd = ???
       // this.btnAdd.addEventListener("click", this.createNote.bind(this));
       // this.loadNotesFromStorage();
+     let txt = document.getElementById("txtAddNote").value;
+     this.btnAdd = document.getElementById("btnAddNote");
+     this.btnAdd.addEventListener("click", function(){
+      alert(this);
+     });
+
+     
+     console.log(this);
     }
     
     loadNotesFromStorage() {
@@ -82,9 +90,10 @@ class Note {
     }
     
   }
-  
+ 
   let app = new App();
-
+/*
   let note1 = new Note("Finish Lab 3!");
   console.log(note1);
   note1.add();
+*/

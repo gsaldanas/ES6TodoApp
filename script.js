@@ -43,7 +43,7 @@ class Note {
       console.log("removing element");
       console.log(this);
       document.querySelector(".notes").removeChild(this);
-
+      
       // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
       // in this function, 'this' will refer to the current note element
     } 
@@ -59,11 +59,16 @@ class Note {
       // this.btnAdd = ???
       // this.btnAdd.addEventListener("click", this.createNote.bind(this));
       // this.loadNotesFromStorage();
-     let txt = document.getElementById("txtAddNote").value;
+
      this.btnAdd = document.getElementById("btnAddNote");
-     this.btnAdd.addEventListener("click", function(){
-      alert(this);
-     });
+     /*document.querySelector("#textAddNote").addEventListener('keypress' function(e){
+ 
+     }); */
+     //txtnode
+     //keypress
+     this.btnAdd.addEventListener("click", this.createNote.bind(this));
+     //this.loadNotesFromStorage();
+    
 
      
      console.log(this);
@@ -76,12 +81,18 @@ class Note {
     }
      
     createNote(e){
+      console.log(e);
       // this function should create a new note by using the Note() class
       
       // HINT🤩
-      // note.add();
+     // let txt = document.getElementById("txtAddNote").value;
+      if(document.getElementById("txtAddNote").value != ""){
+        let note = new Note(document.getElementById("txtAddNote").value);
+        note.add(); 
+      }
+       
       // note.saveToStorage();
-      // this.reset();
+      //this.reset();
 
     }
     
@@ -97,3 +108,5 @@ class Note {
   console.log(note1);
   note1.add();
 */
+
+//prevent default

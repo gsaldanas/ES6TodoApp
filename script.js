@@ -31,7 +31,7 @@ class Note {
     // HINT🤩
     // this function should append the note to the screen somehow
     document.querySelector(".notes").appendChild(this.element);
-   
+
   }
 
   saveToStorage() {
@@ -55,8 +55,23 @@ class Note {
   }
 
   remove() {
+    let title = this.querySelector("p").innerHTML;
+    console.log(title);
 
-   document.querySelector(".notes").removeChild(this);
+    document.querySelector(".notes").removeChild(this);
+    let newCards = [];
+    let cards = JSON.parse(localStorage.getItem("cards"));
+
+    cards.forEach(element => {
+      if (title != element.title) {
+        newCards.push(element);
+      }
+    });
+    localStorage.setItem("cards", JSON.stringify(newCards));
+
+
+
+
 
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
@@ -77,15 +92,11 @@ class App {
     this.btnAdd = document.getElementById("btnAddNote");
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
 
+    let appObj = this;
     this.inpTxt = document.getElementById("txtAddNote");
     this.inpTxt.addEventListener('keypress', function (e) {
       if (e.which == 13 || e.keyCode == 13) {
-        /*  console.log('key pressed');
-          console.log(this.btnAdd);
-          //createNote(e);
-          createNote.bind(this);
-  
-          return false;*/
+          appObj.createNote(e);
       }
     });
 
@@ -100,11 +111,11 @@ class App {
     // load all notes from storage here and add them to the screen
     // something like note.add() in a loop would be nice
     if (localStorage.cards != undefined) {
-    let cards = JSON.parse(localStorage.getItem("cards"));
+      let cards = JSON.parse(localStorage.getItem("cards"));
       cards.forEach(element => {
-       let note = new Note(element.title);
-       note.add();
-     });
+        let note = new Note(element.title);
+        note.add();
+      });
     }
   }
 
@@ -126,7 +137,7 @@ class App {
 
   reset() {
     // this function should reset the form 
-     document.getElementById("txtAddNote").value = "";
+    document.getElementById("txtAddNote").value = "";
   }
 
 }

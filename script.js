@@ -42,7 +42,6 @@ class Note {
     if (localStorage.cards == undefined) {
       let cards = [];
       cards.push(this);
-      console.log(cards);
       localStorage.setItem("cards", JSON.stringify(cards));
     } else {
       let cards = JSON.parse(localStorage.getItem("cards"));
@@ -55,24 +54,23 @@ class Note {
   }
 
   remove() {
+    //bewaar de titel van card in var title
     let title = this.querySelector("p").innerHTML;
-    console.log(title);
 
     document.querySelector(".notes").removeChild(this);
+    //hulp array om localstorage opnieuw te bouwen
     let newCards = [];
+    //laad de localstorage in array
     let cards = JSON.parse(localStorage.getItem("cards"));
-
+    //doorloop de array om de verwijderde element te vinden en weg te laten van de nieuwe array
     cards.forEach(element => {
       if (title != element.title) {
         newCards.push(element);
       }
     });
+    //bewaar de nieuw array zonder  het element
     localStorage.setItem("cards", JSON.stringify(newCards));
-
-
-
-
-
+  
     // HINT🤩 the meaning of 'this' was set by bind() in the createElement function
     // in this function, 'this' will refer to the current note element
   }
@@ -92,7 +90,9 @@ class App {
     this.btnAdd = document.getElementById("btnAddNote");
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
 
-    let appObj = this;
+    //tijdelijk verwijzing naar App object
+    //binnen de keypress function is de app object niet beschikbaar
+    let appObj = this; 
     this.inpTxt = document.getElementById("txtAddNote");
     this.inpTxt.addEventListener('keypress', function (e) {
       if (e.which == 13 || e.keyCode == 13) {
@@ -149,4 +149,3 @@ let app = new App();
   note1.add();
 */
 
-//prevent default
